@@ -4,7 +4,7 @@ import {
 
     Query,
 
-    Headers,
+    Headers, Param,
 } from '@nestjs/common';
 import {
     ApiResponse,
@@ -27,6 +27,17 @@ export class AiController {
     @Get('/carousels')
     carousels() {
         return this.aiService.findAllCarousel();
+    }
+
+    @Get('/fictions')
+    fictions() {
+        return this.aiService.findAllFictions();
+    }
+
+    // 查询
+    @Get('/fictions/:id')
+    fiction(@Param() {id}) {
+        return this.aiService.getFictionById(Number(id))
     }
 
 }
