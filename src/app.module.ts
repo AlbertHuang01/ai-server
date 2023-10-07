@@ -8,6 +8,11 @@ import statusMonitorConfig from './config/statusMonitor';
 import {LoggerMiddleware} from './common/middleware/logger.middleware';
 import {HelloModule} from './modules/hello/hello.module';
 import {ExceptionModule} from './modules/exception/exception.module';
+import {AiModule} from "./modules/ai/ai.module";
+
+import {NestExpressApplication} from '@nestjs/platform-express';
+import {join} from 'path';
+import * as express from 'express';
 
 @Module({
     imports: [
@@ -24,10 +29,16 @@ import {ExceptionModule} from './modules/exception/exception.module';
         }),
         HelloModule,
         ExceptionModule,
+        AiModule,
     ],
 })
 export class AppModule {
-    configure(consumer: MiddlewareConsumer) {
+    configure(consumer: MiddlewareConsumer, app: NestExpressApplication) {
+        // 配置静态文件目录
+        // app.useStaticAssets(join(__dirname, '..', 'public'));
+
+        // app.use('/static', express.static(join(__dirname, '..', 'public')))
+
         // 为 hello 路由添加中间件
         consumer
             .apply(LoggerMiddleware)
