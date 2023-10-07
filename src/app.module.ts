@@ -23,10 +23,10 @@ import * as express from 'express';
         }),
         // TODO @nestjs/terminus almost the same
         StatusMonitorModule.setUp(statusMonitorConfig),
-        MailerModule.forRootAsync({
-            useFactory: (config: ConfigService) => config.get('email'),
-            inject: [ConfigService],
-        }),
+        // MailerModule.forRootAsync({
+        //     useFactory: (config: ConfigService) => config.get('email'),
+        //     inject: [ConfigService],
+        // }),
         HelloModule,
         ExceptionModule,
         AiModule,
