@@ -9,4 +9,5 @@ export default {
     database: 'ai_server',
     entities: [join(__dirname, '../', '**/**.entity{.ts,.js}')],
     synchronize: true,
+    retryAttempts: 10,
 };
